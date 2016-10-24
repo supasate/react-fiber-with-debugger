@@ -69,6 +69,12 @@ module.exports = function(grunt) {
     spawnGulp(['react:clean'], null, this.async());
   });
 
+  grunt.registerTask('build-fiber-debugger-stuff', [
+    'delete-build-modules',
+    'build-modules',
+    'npm-react-dom:release',
+  ]);
+
   // Our own browserify-based tasks to build a single JS file build.
   grunt.registerMultiTask('browserify', require('./grunt/tasks/browserify'));
 

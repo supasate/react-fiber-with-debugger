@@ -52,6 +52,9 @@ var paths = {
       'src/umd/ReactDOMServerUMDEntry.js',
 
       'src/renderers/dom/**/*.js',
+
+      'src/renderers/noop/**/*.js',
+
       'src/renderers/shared/**/*.js',
       'src/test/**/*.js', // ReactTestUtils is currently very coupled to DOM.
 
@@ -199,33 +202,33 @@ gulp.task('react:clean', function() {
 
 gulp.task('react:modules', function() {
   return merge(
-    gulp
-      .src(paths.react.src)
-      .pipe(babel(babelOptsReact))
-      .pipe(stripProvidesModule())
-      .pipe(flatten())
-      .pipe(gulp.dest(paths.react.lib)),
+    // gulp
+    //   .src(paths.react.src)
+    //   .pipe(babel(babelOptsReact))
+    //   .pipe(stripProvidesModule())
+    //   .pipe(flatten())
+    //   .pipe(gulp.dest(paths.react.lib)),
 
     gulp
       .src(paths.reactDOM.src)
       .pipe(babel(babelOptsReactDOM))
       .pipe(stripProvidesModule())
       .pipe(flatten())
-      .pipe(gulp.dest(paths.reactDOM.lib)),
+      .pipe(gulp.dest(paths.reactDOM.lib))
 
-    gulp
-      .src(paths.reactNative.src)
-      .pipe(babel(babelOptsReactNative))
-      .pipe(stripProvidesModule())
-      .pipe(flatten())
-      .pipe(gulp.dest(paths.reactNative.lib)),
+    // gulp
+    //   .src(paths.reactNative.src)
+    //   .pipe(babel(babelOptsReactNative))
+    //   .pipe(stripProvidesModule())
+    //   .pipe(flatten())
+    //   .pipe(gulp.dest(paths.reactNative.lib)),
 
-    gulp
-      .src(paths.reactTestRenderer.src)
-      .pipe(stripProvidesModule())
-      .pipe(babel(babelOptsReactTestRenderer))
-      .pipe(flatten())
-      .pipe(gulp.dest(paths.reactTestRenderer.lib))
+    // gulp
+    //   .src(paths.reactTestRenderer.src)
+    //   .pipe(stripProvidesModule())
+    //   .pipe(babel(babelOptsReactTestRenderer))
+    //   .pipe(flatten())
+    //   .pipe(gulp.dest(paths.reactTestRenderer.lib))
   );
 });
 
