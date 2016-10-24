@@ -279,4 +279,7 @@ function createNoopRenderer(debugTool) {
   return ReactNoop;
 }
 
-module.exports = createNoopRenderer;
+var ReactNoop = createNoopRenderer();
+ReactNoop.create = createNoopRenderer;
+
+module.exports = ReactNoop;

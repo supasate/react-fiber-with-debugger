@@ -273,15 +273,21 @@ module.exports = function<T, P, I, TI, C>(config : HostConfig<T, P, I, TI, C>) {
     // means that we don't need an additional field on the work in
     // progress.
     const current = workInProgress.alternate;
-    const next = beginWork(current, workInProgress, nextPriorityLevel);
+    let next = beginWork(current, workInProgress, nextPriorityLevel);
 
-    if (next) {
-      // If this spawns new work, do that next.
-      return next;
-    } else {
-      // Otherwise, complete the current work.
-      return completeUnitOfWork(workInProgress);
+    if (config.debugTool) {
+      config.debugTool.onBeginWork();
     }
+    if (!next) {
+      // If it doesn't spawn new work, complete the current work.
+      next = completeUnitOfWork(workInProgress);
+
+      if (config.debugTool) {
+        config.debugTool.onCompleteWork();
+      }
+    }
+
+    return next;
   }
 
   function performDeferredWork(deadline) {
