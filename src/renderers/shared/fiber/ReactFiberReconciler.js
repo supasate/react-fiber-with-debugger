@@ -80,6 +80,10 @@ module.exports = function<T, P, I, TI, C>(config : HostConfig<T, P, I, TI, C>) :
 
       scheduleWork(root);
 
+      if (config.debugTool) {
+        config.debugTool.onMountContainer(root);
+      }
+
       // It may seem strange that we don't return the root here, but that will
       // allow us to have containers that are in the middle of the tree instead
       // of being roots.
@@ -93,6 +97,10 @@ module.exports = function<T, P, I, TI, C>(config : HostConfig<T, P, I, TI, C>) :
       root.current.pendingProps = element;
 
       scheduleWork(root);
+
+      if (config.debugTool) {
+        config.debugTool.onUpdateContainer(root);
+      }
     },
 
     unmountContainer(container : OpaqueNode) : void {
@@ -102,6 +110,10 @@ module.exports = function<T, P, I, TI, C>(config : HostConfig<T, P, I, TI, C>) :
       root.current.pendingProps = [];
 
       scheduleWork(root);
+
+      if (config.debugTool) {
+        config.debugTool.onUnmountContainer(root);
+      }
     },
 
     performWithPriority,
