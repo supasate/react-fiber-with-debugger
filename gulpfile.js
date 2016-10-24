@@ -193,7 +193,7 @@ gulp.task('version-check', getTask('version-check'));
 
 gulp.task('react:clean', function() {
   return del([
-    paths.react.lib,
+    //paths.react.lib,
     paths.reactDOM.lib,
     paths.reactNative.lib,
     paths.reactTestRenderer.lib,
